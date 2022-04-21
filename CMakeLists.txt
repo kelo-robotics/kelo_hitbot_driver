@@ -60,8 +60,3 @@ target_link_libraries(hitbot_driver
 	${catkin_LIBRARIES}
 )
 
-add_executable(hitbot_server src/HitbotServer.cpp)
-target_link_libraries(hitbot_server
-	${catkin_LIBRARIES}
-)
-

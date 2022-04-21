@@ -1,0 +1,12 @@
+<launch>
+
+	<node pkg="kelo_hitbot_driver" type="hitbot_driver" name="hitbot_driver" output="screen">
+		<param name="IP_address" value="192.168.58.2"/>
+		<param name="port" value="8080"/>
+		<param name="aux_port" value="8082"/>
+		<!--param name="anti_collision_level" value="1"/-->
+		<!--rosparam param="negative_joint_limits"> [-90.0,-90.0,-90.0,-90.0,-90.0,-90.0]</rosparam> -->
+		<!--rosparam param="positive_joint_limits"> [90.0,90.0,90.0,90.0,90.0,90.0]</rosparam> -->
+	</node>
+
+</launch>
