@@ -53,11 +53,11 @@ Related function(s): hitbot_driver::computeTool
 Related function(s): hitbot_driver::computeWObjCoord
 
 
-#Subscribers
+# Subscribers
 
 Here is the list of the subscribed topics:
 - move_PTP[(kelo_hitbot_driver::PTP)](msg/PTP.msg)
-Related function(s): hitbot_driver::movePTP
+Related function(s): [hitbot_driver::movePTP](include/kelo_hitbot_driver/HitbotDriver.h#27)
 
 - move_linear[(kelo_hitbot_driver::Lin)](msg/Lin.msg)
 Related function(s): hitbot_driver::moveLin
