@@ -6,6 +6,7 @@ Driver for hitbot manipulator
 
 Install the kelo_hitbot_driver package using the following steps:
 
+~~~ sh
 cd ~/<CATKIN_WORKSPACE>/src
 git clone 
 git clone https://github.com/kelo-robotics/kelo_hitbot_driver.git
