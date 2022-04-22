@@ -87,7 +87,7 @@ Related function(s): [hitbot_driver::waitDI](include/kelo_hitbot_driver/HitbotDr
 Related function(s): [hitbot_driver::waitAI](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L162-L167)
 
 - set_DO[(kelo_hitbot_driver::DigitalOutput)](msg/DigitalOutput.msg)
-Related function(s): [hitbot_driver::setDO](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L177-L121)
+Related function(s): [hitbot_driver::setDO](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L117-L121)
 
 - set_AO[(kelo_hitbot_driver::AnalogOutput)](msg/AnalogOutput.msg)
 Related function(s): [hitbot_driver::setAO](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L127-L130)
