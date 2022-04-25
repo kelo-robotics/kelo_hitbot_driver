@@ -231,7 +231,7 @@ void waitAICallback(const kelo_hitbot_driver::WaitAnalog msg) {
 		std::cout << "waiting for tool analog input " << msg.ID << " for " << msg.waitTime << "ms" << std::endl;
 	}
 }
-			
+
 void setDOCallback(const kelo_hitbot_driver::DigitalOutput msg) {
 	if (msg.type == 0) {
 		driver.setDO(msg.ID, msg.value, msg.smooth);
