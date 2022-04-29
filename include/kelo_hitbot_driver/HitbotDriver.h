@@ -71,7 +71,7 @@ public:
 	
 	//! single axis jog movement
 	//! motionCmd determines the reference frame for the axis jog movement. 0 for joint coordinate, 2 for base coordinate and 4 for tool coordinate
-	//! jointNum is the joint number or the axis for the jog movement. If motionCmd is 0 it determines which joint should be moved (J1 - J6). Otherwise it will {x, y, z, rx, ry, rz}
+	//! jointNum is the joint number or the axis for the jog movement. If motionCmd is 0 it determines which joint should be moved (J1 - J6). Otherwise it will be {x, y, z, rx, ry, rz}
 	//! direction determines if the movement is towards the positive or negative axis. 0 is for negative and 1 is for positive
 	//! vel is the percentage of the maximum speed, ranging from 0 to 100
 	//! acc is the percentage of the maximum acceleration, ranging from 0 to 100
