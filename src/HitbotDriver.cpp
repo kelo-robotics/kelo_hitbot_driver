@@ -125,12 +125,12 @@ std::vector<double> HitbotDriver::getContentDouble() {
 bool HitbotDriver::movePTP(std::vector<float> TCPPose, int toolNum, int workpieceNum, 
 							float speed, float acc, int ovl, std::vector<float> extAxisPos, float blendT, 
 							uint8_t offsetFlag, std::vector<float> offset) {
-	std::vector<float> jointAngle = getInverseKinematics(0, TCPPose, -1);							
+	std::vector<float> jointAngle = getInverseKinematics(0, TCPPose, 1);							
 
 	std::string command = "MoveJ(";
 	for (unsigned int i = 0; i < jointAngle.size(); i++) { command += std::to_string(jointAngle[i]) + ","; }
 	for (unsigned int i = 0; i < TCPPose.size(); i++) { command += std::to_string(TCPPose[i]) + ","; }
-	command += std::to_string(toolNum) + "," + std::to_string(workpieceNum) + "," + std::to_string(speed) + "," + std::to_string(acc) + "," + std::to_string(ovl);
+	command += std::to_string(toolNum) + "," + std::to_string(workpieceNum) + "," + std::to_string(speed) + "," + std::to_string(acc) + "," + std::to_string(ovl) + ",";
 	for (unsigned int i = 0; i < extAxisPos.size(); i++) { command += std::to_string(extAxisPos[i]) + ","; }
 	command += std::to_string(blendT) + "," + std::to_string(offsetFlag) + ",";
 	for (unsigned int i = 0; i < offset.size() - 1; i++) { command += std::to_string(offset[i]) + ","; }
@@ -144,8 +144,8 @@ bool HitbotDriver::moveArc(std::vector<float> TCPPose1, int toolNum1, int workpi
 							float speed1, float acc1, std::vector<float> extAxisPos1, 
 							std::vector<float> TCPPose2, int toolNum2, int workpieceNum2, float speed2, float acc2, 
 							std::vector<float> extAxisPos2, int ovl, float blendR, uint8_t offsetFlag, std::vector<float> offset) {
-	std::vector<float> jointAngle1 = getInverseKinematics(0, TCPPose1, -1);
-	std::vector<float> jointAngle2 = getInverseKinematics(0, TCPPose2, -1);
+	std::vector<float> jointAngle1 = getInverseKinematics(0, TCPPose1, 1);
+	std::vector<float> jointAngle2 = getInverseKinematics(0, TCPPose2, 1);
 								
 	std::string command = "MoveC(";
 	for (unsigned int i = 0; i < jointAngle1.size(); i++) { command += std::to_string(jointAngle1[i]) + ","; }
@@ -167,7 +167,7 @@ bool HitbotDriver::moveArc(std::vector<float> TCPPose1, int toolNum1, int workpi
 bool HitbotDriver::moveLin(std::vector<float> TCPPose, int toolNum, int workpieceNum, 
 							float speed, float acc, int ovl, float blendR, std::vector<float> extAxisPos,  
 							uint8_t searchFlag, uint8_t offsetFlag, std::vector<float> offset) {
-	std::vector<float> jointAngle = getInverseKinematics(0, TCPPose, -1);									
+	std::vector<float> jointAngle = getInverseKinematics(0, TCPPose, 1);									
 								
 	std::string command = "MoveL(";
 	for (unsigned int i = 0; i < jointAngle.size(); i++) { command += std::to_string(jointAngle[i]) + ","; }
