@@ -60,3 +60,15 @@ target_link_libraries(hitbot_driver
 	${catkin_LIBRARIES}
 )
 
+add_executable(pick_and_place src/pick_and_place.cpp src/HitbotDriver.cpp)
+target_link_libraries(pick_and_place
+	${catkin_LIBRARIES}
+)
+
+add_executable(pick_and_place_ROS src/pick_and_place_ROS.cpp)
+target_link_libraries(pick_and_place_ROS
+	${catkin_LIBRARIES}
+)
+
+
+
