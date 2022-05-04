@@ -1,5 +1,5 @@
 #include "kelo_hitbot_driver/HitbotDriver.h"
-#include <ros/ros.h>
+
 HitbotDriver::HitbotDriver() {
 	sock = 0;
 	buffer[1024] = {0};
@@ -39,7 +39,6 @@ int HitbotDriver::setupConnection(std::string IP_address, int port) {
 }
 
 void HitbotDriver::sendCommand(int ID, std::string command) {
-	ros::Time tstart = ros::Time::now();
 	std::string sequence = std::to_string(msgCounter);
 	std::string instructionType = std::to_string(ID);
 	std::string count = std::to_string(command.length());
@@ -48,19 +47,12 @@ void HitbotDriver::sendCommand(int ID, std::string command) {
 	send(sock, packet_str , strlen(packet_str) , 0);
 	msgCounter++;
 
-	std::cout << "sending: " << packet << std::endl;
 	//memset (buffer,'0', 1024);
 	//buffer[1024] = {0};
-	ros::Time treceive = ros::Time::now();
 	int valread = read(sock, buffer, 1024);
-	ros::Time tend = ros::Time::now();
-	std::cout << "receiving: " << buffer << std::endl << std::endl;
-	std::cout << "Sending time = " << (tend - tstart).toSec() << std::endl;
-	std::cout << "Receiving time = " << (tend - treceive).toSec() << std::endl;
 }
 
 std::vector<std::string> HitbotDriver::getContent() {
-	ros::Time tstart = ros::Time::now();
 	std::string packet(buffer);
 	
 	for (unsigned int i = 0; i < 3; i++) {
@@ -80,9 +72,7 @@ std::vector<std::string> HitbotDriver::getContent() {
 			content.erase(0, content.find(",") + 1);
 		}
 		data.push_back(content.substr(0, content.length() + 1));
-	}	
-	ros::Time tend = ros::Time::now();
-	std::cout << "Get content time = " << (tend - tstart).toSec() << std::endl;
+	}
 	return data;
 }
 
