@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-	ros::init (argc, argv, "hitbot_driver");
+	ros::init (argc, argv, "pick_and_place");
 	ros::NodeHandle nh("hitbot_driver");
 	
 	ros::Publisher movePub = nh.advertise<kelo_hitbot_driver::PTP>("move_PTP", 2);		
@@ -55,14 +55,23 @@ int main(int argc, char** argv)
 	closeMsg.pos = 100;
 	
 	movePub.publish(msg1);
+	ros::Duration(0.1).sleep();
 	gripperPub.publish(openMsg);
+	ros::Duration(0.1).sleep();
 	movePub.publish(msg2);
+	ros::Duration(0.1).sleep();
 	gripperPub.publish(closeMsg);
+	ros::Duration(0.1).sleep();
 	movePub.publish(msg1);
+	ros::Duration(0.1).sleep();
 	movePub.publish(msg3);
+	ros::Duration(0.1).sleep();
 	movePub.publish(msg4);
+	ros::Duration(0.1).sleep();
 	gripperPub.publish(openMsg);
+	ros::Duration(0.1).sleep();
 	movePub.publish(msg3);
+	ros::Duration(0.1).sleep();
 
 	ros::shutdown();
 }

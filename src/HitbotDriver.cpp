@@ -17,8 +17,7 @@ HitbotDriver::~HitbotDriver() {
 
 int HitbotDriver::setupConnection(std::string IP_address, int port) {
 	// create socket
-	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-	{
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
 		printf("\n Socket creation error \n");
 		return -1;
 	}
@@ -27,14 +26,12 @@ int HitbotDriver::setupConnection(std::string IP_address, int port) {
 	serv_addr.sin_port = htons(port);
 
 	// convert IPv4 and IPv6 addresses from text to binary form
-	if(inet_pton(AF_INET, IP_address.c_str(), &serv_addr.sin_addr)<=0)
-	{
+	if(inet_pton(AF_INET, IP_address.c_str(), &serv_addr.sin_addr)<=0) {
 		std::cout << "Invalid address/ Address not supported" << std::endl;
 		return -1;
 	}
 
-	if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
-	{
+	if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
 		std::cout << "Connection Failed" << std::endl;
 		return -1;
 	}
