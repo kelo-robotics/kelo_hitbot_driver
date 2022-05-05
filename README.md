@@ -1,6 +1,6 @@
 # kelo_hitbot_driver
 
-Driver for hitbot Z-Arm S922 manipulator
+Driver for [hitbot Z-Arm S922 manipulator](https://www.hitbotrobot.com/product/s922-robotic-arm/)
 
 ## Installation
 
