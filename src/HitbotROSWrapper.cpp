@@ -115,14 +115,14 @@ kelo_hitbot_driver::Axes convertVectorToAxis(std::vector<float> vec) {
 void movePTPCallback(const kelo_hitbot_driver::PTP msg) {
 	driver.movePTP(convertAxesToVector(msg.command.pose), msg.command.toolID, msg.command.workpieceID,
 					msg.command.speed, msg.command.acc, msg.ovl, msg.command.extAxesPos, msg.blendTime,
-					msg.offsetFlag, convertAxesToVector(msg.dt));
+					msg.offsetFlag, convertAxesToVector(msg.offset));
 	std::cout << "start PTP movement" << std::endl;
 }
 
 void moveLinCallback(const kelo_hitbot_driver::Lin msg) {
 	driver.moveLin(convertAxesToVector(msg.command.pose), msg.command.toolID, msg.command.workpieceID,
 					msg.command.speed, msg.command.acc, msg.ovl, msg.blendRadius, msg.command.extAxesPos, 
-					msg.searchFlag, msg.offsetFlag, convertAxesToVector(msg.dt));
+					msg.searchFlag, msg.offsetFlag, convertAxesToVector(msg.offset));
 	std::cout << "start linear movement" << std::endl;
 }
 
@@ -130,7 +130,7 @@ void moveArcCallback(const kelo_hitbot_driver::Arc msg) {
 	driver.moveArc(convertAxesToVector(msg.command1.pose), msg.command1.toolID, msg.command1.workpieceID,
 					msg.command1.speed, msg.command1.acc, msg.command1.extAxesPos, convertAxesToVector(msg.command2.pose), 
 					msg.command2.toolID, msg.command2.workpieceID, msg.command2.speed, msg.command2.acc, msg.command2.extAxesPos,
-					msg.ovl, msg.blendRadius, msg.offsetFlag, convertAxesToVector(msg.dt));
+					msg.ovl, msg.blendRadius, msg.offsetFlag, convertAxesToVector(msg.offset));
 	std::cout << "start arc movement" << std::endl;
 }
 
