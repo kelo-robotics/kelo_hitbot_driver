@@ -66,12 +66,12 @@ int main(int argc, char** argv)
 	msg1.ovl = 100;
 	msg1.blendTime = 0;
 	msg1.offsetFlag = 0;
-	msg1.dt.x = 0;
-	msg1.dt.y = 0;
-	msg1.dt.z = 0;
-	msg1.dt.rx = 0;
-	msg1.dt.ry = 0;
-	msg1.dt.rz = 0;
+	msg1.offset.x = 0;
+	msg1.offset.y = 0;
+	msg1.offset.z = 0;
+	msg1.offset.rx = 0;
+	msg1.offset.ry = 0;
+	msg1.offset.rz = 0;
 	
 	kelo_hitbot_driver::PTP msg2 = msg1;
 	msg2.command.pose.z = 122.7;
