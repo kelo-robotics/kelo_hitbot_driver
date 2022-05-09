@@ -502,16 +502,16 @@ void publishTCPInfo() {
 	kelo_hitbot_driver::Axes targetMsg = convertVectorToAxis(driver.getTargetTCPPose());
 	TCPTargetPublisher.publish(targetMsg);
 	
-	kelo_hitbot_driver::Axes offsetMsg = convertVectorToAxis(driver.getTCPOffset());
-	TCPOffsetPublisher.publish(offsetMsg);	
+	//kelo_hitbot_driver::Axes offsetMsg = convertVectorToAxis(driver.getTCPOffset());
+	//TCPOffsetPublisher.publish(offsetMsg);	
 	
-	kelo_hitbot_driver::Axes flangePoseMsg = convertVectorToAxis(driver.getActualToolFlangePose());
-	TCPFlangePublisher.publish(flangePoseMsg);
+	//kelo_hitbot_driver::Axes flangePoseMsg = convertVectorToAxis(driver.getActualToolFlangePose());
+	//TCPFlangePublisher.publish(flangePoseMsg);
 	
-	std_msgs::Int32 numMsg;
-	std::vector<int> num = driver.getActualTCPNum();
-	numMsg.data = num[0];
-	TCPNumPublisher.publish(numMsg);
+	//std_msgs::Int32 numMsg;
+	//std::vector<int> num = driver.getActualTCPNum();
+	//numMsg.data = num[0];
+	//TCPNumPublisher.publish(numMsg);
 }
 
 void publishPayload() {
@@ -614,13 +614,13 @@ int main(int argc, char** argv)
 	
 	while (nh.ok()) {
 		ros::spinOnce();
-		
-		publishConfig();
-		publishIOStatus();
+
 		publishJointStates();
 		publishTCPInfo();
-		publishCoordinateSystem();
-		publishPayload();
+		//publishConfig();
+		//publishIOStatus();
+		//publishCoordinateSystem();
+		//publishPayload();
 		 
 		rate.sleep();
 	}
