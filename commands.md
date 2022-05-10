@@ -60,7 +60,7 @@ Here is the list of the subscribed topics:
 Related function(s): [hitbot_driver::movePTP](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L66-L79)
 
 - move_linear[(kelo_hitbot_driver::Lin)](msg/Lin.msg)  
-Related function(s): [hitbot_driver::moveLin](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L106-L109)
+Related function(s): [hitbot_driver::moveLin](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L96-L109)
 
 - move_arc[(kelo_hitbot_driver::Arc)](msg/Arc.msg)  
 Related function(s): [hitbot_driver::moveArc](include/kelo_hitbot_driver/HitbotDriver.h?plain=1#L81-L94)
