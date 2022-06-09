@@ -85,15 +85,28 @@ void HitbotDriver::sendCommand(int ID, std::string command) {
 	const char *packet_str = packet.c_str();
 	send(sock, packet_str , strlen(packet_str) , 0);
 	msgCounter++;
-
+	//std::cout << "send = " << packet << std::endl;
 	//memset (buffer,'0', 1024);
 	//buffer[1024] = {0};
 	int valread = read(sock, buffer, 1024);
 }
 
+void HitbotDriver::sendSpecialCommand(int ID, std::string command) {
+	std::string sequence = std::to_string(msgCounter);
+	std::string instructionType = std::to_string(ID);
+	std::string count = std::to_string(command.length());
+	std::string packet = startHeader + separator + sequence + separator + instructionType + separator + count + separator + command + separator + endHeader;
+	const char *packet_str = packet.c_str();
+	send(sock, packet_str , strlen(packet_str) , 0);
+	msgCounter++;
+	
+	int valread = read(sock, buffer, 1024);
+	int valread2 = read(sock, buffer, 1024);
+}
+
 std::vector<std::string> HitbotDriver::getContent() {
 	std::string packet(buffer);
-	
+
 	for (unsigned int i = 0; i < 3; i++) {
 		packet.erase(0, packet.find(separator) + separator.length());
 	}
@@ -166,6 +179,24 @@ bool HitbotDriver::movePTP(std::vector<float> TCPPose, int toolNum, int workpiec
 	return getContentBool();
 }
 
+bool HitbotDriver::moveJoint(std::vector<float> jointAngles, int toolNum, int workpieceNum, 
+							float speed, float acc, int ovl, std::vector<float> extAxisPos, float blendT, 
+							uint8_t offsetFlag, std::vector<float> offset) {
+	std::vector<float> TCPPose = getForwardKinematics(jointAngles);							
+
+	std::string command = "MoveJ(";
+	for (unsigned int i = 0; i < jointAngles.size(); i++) { command += std::to_string(jointAngles[i]) + ","; }
+	for (unsigned int i = 0; i < TCPPose.size(); i++) { command += std::to_string(TCPPose[i]) + ","; }
+	command += std::to_string(toolNum) + "," + std::to_string(workpieceNum) + "," + std::to_string(speed) + "," + std::to_string(acc) + "," + std::to_string(ovl) + ",";
+	for (unsigned int i = 0; i < extAxisPos.size(); i++) { command += std::to_string(extAxisPos[i]) + ","; }
+	command += std::to_string(blendT) + "," + std::to_string(offsetFlag) + ",";
+	for (unsigned int i = 0; i < offset.size() - 1; i++) { command += std::to_string(offset[i]) + ","; }
+	command += std::to_string(offset[offset.size() - 1]) + ")";
+	
+	sendCommand(MoveJ_ID, command);
+	return getContentBool();
+}
+
 bool HitbotDriver::moveArc(std::vector<float> TCPPose1, int toolNum1, int workpieceNum1, 
 							float speed1, float acc1, std::vector<float> extAxisPos1, 
 							std::vector<float> TCPPose2, int toolNum2, int workpieceNum2, float speed2, float acc2, 
@@ -214,7 +245,7 @@ bool HitbotDriver::startJog(uint8_t motionCmd, uint8_t jointNum, uint8_t directi
 	command += std::to_string(motionCmd) + "," + std::to_string(jointNum) + "," + std::to_string(direction) + ",";
 	command += std::to_string(vel) + "," + std::to_string(acc) + "," + std::to_string(maxDistance) + ")";
 	
-	sendCommand(StartJOG_ID, command);
+	sendSpecialCommand(StartJOG_ID, command);
 	return getContentBool();
 }
 
@@ -683,8 +714,8 @@ std::vector<float> HitbotDriver::getInverseKinematics(uint8_t flag, std::vector<
 
 std::vector<float> HitbotDriver::getForwardKinematics(std::vector<float> jointAngles) {
 	std::string command = "GetForwardKin(";
-	for (unsigned int i = 0; i < jointAngles.size(); i++) { command += std::to_string(jointAngles[i]) + ","; }
-	command += ")";
+	for (unsigned int i = 0; i < jointAngles.size() - 1; i++) { command += std::to_string(jointAngles[i]) + ","; }
+	command += std::to_string(jointAngles[jointAngles.size() - 1]) + ")";
 	sendCommand(GetForwardKin_ID, command);
 	return getContentFloat();
 }

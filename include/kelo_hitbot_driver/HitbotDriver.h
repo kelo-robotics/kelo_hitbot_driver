@@ -78,6 +78,21 @@ public:
 				float speed, float acc, int ovl, std::vector<float> extAxisPos, float blendT, 
 				uint8_t offsetFlag, std::vector<float> offset);
 	
+	//! Joint space movement
+	//! jointAngles is the desired joint positions in degrees
+	//! toolNum is the tool ID
+	//! workpieceNum is the workpiece ID
+	//! speed is the percentage of the maximum speed, ranging from 0 to 100
+	//! acc is the percentage of the maximum acceleration, ranging from 0 to 100
+	//! ovl is the percentage of the maximum speed, ranging from 0 to 100
+	//! extAxisPos is a vector which consists of the extended axis positions [a1, a2, a3, a4]
+	//! blendT is the smoothing time, ranging from 0 to 500 ms
+	//! offsetFlag determines the type of the offset. 0 for no offset, 1 for workpiece/base coordinate system, 2 for tool coordinate system
+	//! offset is the amount of the offset in [x, y, z, rx, ry, rz] with x, y, z in mm and rx, ry, rz in degrees
+	bool moveJoint(std::vector<float> jointAngles, int toolNum, int workpieceNum, 
+			float speed, float acc, int ovl, std::vector<float> extAxisPos, float blendT, 
+			uint8_t offsetFlag, std::vector<float> offset);
+	
 	//! Arc circular movement
 	//! TCPPose is the desired TCP pose with the format [x, y, z, rx, ry, rz] with x, y, z in mm and rx, ry, rz in degrees
 	//! toolNum is the tool ID
@@ -505,6 +520,7 @@ protected:
 	
 	//! Create the packet
 	void sendCommand(int ID, std::string command);
+	void sendSpecialCommand(int ID, std::string command);
 	
 	int sock;
 	struct sockaddr_in serv_addr;
