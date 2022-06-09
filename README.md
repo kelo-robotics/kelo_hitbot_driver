@@ -26,7 +26,7 @@ The main disadvantage of this method is that the joint state and sensor data col
 ### C++ API
 
 The explanation of the functions are documented in [HitbotDriver.h](include/kelo_hitbot_driver/HitbotDriver.h).
-Here is an example code for a simple [pick and place](src/pick_and_place.cpp) application:
+Here is an example code for a simple [pick and place](src/examples/pick_and_place.cpp) application:
 
 ~~~ sh
 #include "kelo_hitbot_driver/HitbotDriver.h"
@@ -88,7 +88,7 @@ roslaunch kelo_hitbot_driver robot.launch
 
 It will start a ROS node named hitbot_driver which will publish joint states and sensor data periodically and
 listens to commands sent via ROS topics. The ROS topics and the related functions are listed in [commands.md](commands.md).
-Here is an example of a [pick and place](src/pick_and_place_ROS.cpp) application using ROS topics:
+Here is an example of a [pick and place](src/examples/pick_and_place_ROS.cpp) application using ROS topics:
 
 ~~~ sh
 
